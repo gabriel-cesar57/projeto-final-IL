@@ -16,5 +16,5 @@
 # Esse arquivo será o responsável por definir o fluxo do usuário, é importante que ele seja o mais enxuto possível
 
 # JOÃO: Read e Delete
-# GABRIEL:
-# MURILO: 
+# GABRIEL: Create e Refinamento
+# MURILO: Update e Integração com menus
