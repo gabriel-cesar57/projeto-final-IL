@@ -1,1 +1,3 @@
-# projeto-final-IL
+# Introdução a Lógica: Sistema de gestão de tarefas acadêmicas
+
+Este projeto visa implementar um sistema simples e completo de gerenciamento de tarefas por parte de um ou mais alunos. Os alunos devem ter a capacidade de visualizar, criar, atualizar e deletar tarefas, além de definir configurações como prazos, prioridades e progresso. As tarefas podem ser incluídas em relatórios ou classificações específicas. 
