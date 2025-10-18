@@ -1,11 +1,5 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 from auxiliares import auxiliares
-
-# Visualizar todas as tarefas;
-# Visualizar tarefa baseado em id;
-# Visualizar as 3 tarefas mais próximas;
-# Visualizar tarefas vencidas;
-# Visualizar tarefas de um único tipo de prioridade.
 
 def visualizar_tarefa_por_id(lista_tarefas: list, id: int) -> None:
     tarefa = next((t for t in lista_tarefas if t['id'] == id), None)
@@ -39,4 +33,16 @@ def visualizar_tarefas_prioridade(lista_tarefas: list, prioridade: str) -> None:
         auxiliares.visualizar_lista_tarefas(tarefas_prioridade)
 
 def visualizar_tarefas_proximas(lista_tarefas: list) -> None:
-    print()
+    hoje = datetime.now()
+    limite_superior = hoje + timedelta(days=3)
+    tarefas_proximas = []
+
+    for tarefa in lista_tarefas:
+        data_entrega = auxiliares.formatar_data_datetime(tarefa['data_entrega'])
+        if not tarefa['concluida'] and hoje <= data_entrega <= limite_superior:
+            tarefas_proximas.append(tarefa)
+
+    if not tarefas_proximas:
+        print('Nenhuma tarefa encontrada para os próximos 3 dias.')
+    else:
+        auxiliares.visualizar_lista_tarefas(tarefas_proximas)
