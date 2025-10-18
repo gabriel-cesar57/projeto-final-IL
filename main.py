@@ -15,6 +15,8 @@
 # Se for necessário, podemos criar arquivos separados para dividir os métodos utilizados
 # Esse arquivo será o responsável por definir o fluxo do usuário, é importante que ele seja o mais enxuto possível
 
+# BOAS PRÁTICAS: pastas e arquivos sempre com nomes minúsculos, seguindo a snake_case
+
 # JOÃO: Read e Delete
-# GABRIEL:
-# MURILO: 
+# GABRIEL: Create e Refinamento
+# MURILO: Update e Integração com menus
