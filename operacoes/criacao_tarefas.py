@@ -26,7 +26,7 @@ def validar_parametros(titulo: str, data_entrega, prioridade, id) -> None:
     if data_entrega is None:
         raise ValueError("Data de entrega inválida: não pode ser nula.")
     if not isinstance(data_entrega, datetime.date):
-        raise ValueError("Data de entrega deve ser um datetime.date.")
+        raise ValueError("Data de entrega deve ser no formato ANO/MES/DIA.")
     hoje = datetime.date.today()
     if data_entrega <= hoje:
         raise ValueError("Data de entrega deve ser posterior à data de hoje.")
