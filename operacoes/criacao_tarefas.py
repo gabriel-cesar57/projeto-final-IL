@@ -37,4 +37,4 @@ def criar_tarefa(titulo: str, data_entrega: datetime, prioridade: int) -> None:
 
 # Exemplo de uso
 nova = criar_tarefa("Fazer atividades", datetime.date(2025, 12, 5), 2)
-# para rodar o código, execute com o comando phyton - m operacoes.criacao_tarefas
+# para rodar o código, execute com o comando python - m operacoes.criacao_tarefas
