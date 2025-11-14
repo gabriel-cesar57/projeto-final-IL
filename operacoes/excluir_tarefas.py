@@ -18,10 +18,11 @@ def excluir_todas_tarefas() -> list[dict[str, any]]:
     else:
         raise ContinuarComMenuException('Lista já está vazia.')
     
-def excluir_tarefa_por_id(id: int) -> list[dict[str, any]]:
+def excluir_tarefa_por_id() -> list[dict[str, any]]:
     lista_tarefas = lista.pegar_lista()
 
     if len(lista_tarefas) > 0:
+        id = int(input('Digite o ID da tarefa que você deseja excluir: ').strip())
         tarefa = leitura_tarefas.visualizar_tarefa_por_id(id)
         confirmar_formatado = entrada_usuario_confirmar_acao()
 

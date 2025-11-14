@@ -36,6 +36,5 @@ def processar_opcao_menu_excluir(opcao: int) -> None:
         case enums.OpcoesMenuExcluirEnum.EXCLUIR_TODAS:
             op.excluir_todas_tarefas()
         case enums.OpcoesMenuExcluirEnum.EXCLUIR_POR_ID:
-            id = int(input('Digite o ID da tarefa que você deseja excluir: ').strip())
-            op.excluir_tarefa_por_id(id)
+            op.excluir_tarefa_por_id()
         

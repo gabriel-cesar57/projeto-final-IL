@@ -27,7 +27,7 @@ from menu import menu_principal
 def executar() -> None:
     while True:
         try:
-            print('\n=== SISTEMA DE GERENCIAMENTO DE TAREFAS ===\nSeja bem vindo. Como gostaria de prosseguir?')
+            print('\n=== SISTEMA DE GERENCIAMENTO DE TAREFAS ===\nSeja bem vindo. Como gostaria de prosseguir?\n')
             opcao_escolhida = int(input(menu_principal.pegar_opcoes_menu_principal()).strip())
 
             opcao_formatada = enums.OpcoesMenuEnum(opcao_escolhida)

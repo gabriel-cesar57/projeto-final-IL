@@ -1,9 +1,17 @@
 import exception
 from operacoes import leitura_tarefas, atualizacao_tarefas
 from auxiliares.enums import OpcoesMenuAtualizarEnum
+from exception import ContinuarComMenuException
+from auxiliares import lista
 
-def menu_atualizar(id_tarefa: int) -> None:
-    tarefa_para_atualizar = leitura_tarefas.visualizar_tarefa_por_id(id_tarefa)
+def menu_atualizar() -> None:
+    lista_tarefas = lista.pegar_lista()
+    if len(lista_tarefas) == 0:
+        raise ContinuarComMenuException('ERRO: Nenhuma tarefa cadastrada para ser atualizada.')
+    
+    id = int(input('Digite o ID da tarefa que você deseja atualizar: ').strip())
+    tarefa_para_atualizar = leitura_tarefas.visualizar_tarefa_por_id(id)
+    
     while True:
         try:
             escolha_usuario = int(input(pegar_opcoes_menu_atualizar()).strip())

@@ -1,6 +1,5 @@
 from auxiliares import enums
-from menu import menu_visualizar, menu_excluir, menu_atualizar
-from operacoes import atualizacao_tarefas, criacao_tarefas
+from menu import menu_visualizar, menu_excluir, menu_atualizar, menu_cadastrar
 import exception
 
 def pegar_opcoes_menu_principal() -> str:
@@ -20,9 +19,8 @@ def processar_opcao_menu_principal(opcao: int) -> None:
         case enums.OpcoesMenuEnum.VISUALIZAR_TAREFAS:
             menu_visualizar.menu_visualizar()
         case enums.OpcoesMenuEnum.CADASTRAR_TAREFA:
-            criacao_tarefas.criar_tarefa()
+            menu_cadastrar.menu_cadastrar()
         case enums.OpcoesMenuEnum.ATUALIZAR_TAREFA:
-            id = int(input('Digite o ID da tarefa que você deseja atualizar: ').strip())
-            menu_atualizar.menu_atualizar(id)
+            menu_atualizar.menu_atualizar()
         case enums.OpcoesMenuEnum.EXCLUIR_TAREFA:
             menu_excluir.menu_excluir()
