@@ -20,11 +20,12 @@
 # JOÃO: Read e Delete
 # GABRIEL: Create e Refinamento
 # MURILO: Update e Integração com menus
-from auxiliares import enums
+from auxiliares import auxiliares, enums
 import exception
 from menu import menu_principal
 
 def executar() -> None:
+    auxiliares.limpar_console()
     while True:
         try:
             print('\n=== SISTEMA DE GERENCIAMENTO DE TAREFAS ===\nSeja bem vindo. Como gostaria de prosseguir?\n')

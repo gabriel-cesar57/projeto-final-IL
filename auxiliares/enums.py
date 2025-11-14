@@ -2,6 +2,7 @@ from enum import IntEnum
 
 class OpcoesMenuEnum(IntEnum):
     SAIR = 0
+    LIMPAR_CONSOLE = 9
     VISUALIZAR_TAREFAS = 1
     CADASTRAR_TAREFA = 2
     ATUALIZAR_TAREFA = 3

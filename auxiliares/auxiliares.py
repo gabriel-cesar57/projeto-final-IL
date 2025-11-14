@@ -1,4 +1,9 @@
 import datetime
+import os
+
+def limpar_console() -> None:
+    """Limpa o terminal (Windows: cls, outros: clear)."""
+    os.system('cls' if os.name == 'nt' else 'clear')
 
 def formatar_data_datetime(data_nao_formatada: str)  -> datetime:
     return datetime.datetime.strptime(data_nao_formatada, '%d/%m/%Y')

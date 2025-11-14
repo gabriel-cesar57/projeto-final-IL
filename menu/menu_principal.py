@@ -1,5 +1,6 @@
-from auxiliares import enums
+from auxiliares.enums import OpcoesMenuEnum
 from menu import menu_visualizar, menu_excluir, menu_atualizar, menu_cadastrar
+from auxiliares import auxiliares
 import exception
 
 def pegar_opcoes_menu_principal() -> str:
@@ -8,19 +9,22 @@ def pegar_opcoes_menu_principal() -> str:
         '[2] Cadastrar tarefa\n'
         '[3] Atualizar tarefa\n'
         '[4] Excluir tarefa(s)\n'
+        '[9] Limpar console\n'
         '[0] Sair do programa\n'
         '\nDigite a opção escolhida: '
     )
 
 def processar_opcao_menu_principal(opcao: int) -> None:
     match opcao:
-        case enums.OpcoesMenuEnum.SAIR:
+        case OpcoesMenuEnum.SAIR:
             raise exception.FecharMenuException('Usuário decidiu encerrar o programa. Fechando...')
-        case enums.OpcoesMenuEnum.VISUALIZAR_TAREFAS:
+        case OpcoesMenuEnum.LIMPAR_CONSOLE:
+            auxiliares.limpar_console()
+        case OpcoesMenuEnum.VISUALIZAR_TAREFAS:
             menu_visualizar.menu_visualizar()
-        case enums.OpcoesMenuEnum.CADASTRAR_TAREFA:
+        case OpcoesMenuEnum.CADASTRAR_TAREFA:
             menu_cadastrar.menu_cadastrar()
-        case enums.OpcoesMenuEnum.ATUALIZAR_TAREFA:
+        case OpcoesMenuEnum.ATUALIZAR_TAREFA:
             menu_atualizar.menu_atualizar()
-        case enums.OpcoesMenuEnum.EXCLUIR_TAREFA:
+        case OpcoesMenuEnum.EXCLUIR_TAREFA:
             menu_excluir.menu_excluir()
