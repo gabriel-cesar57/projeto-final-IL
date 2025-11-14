@@ -22,3 +22,10 @@ class OpcoesMenuExcluirEnum(IntEnum):
 class OpcoesConfirmarExcluirEnum(IntEnum):
     SIM = 1
     NAO = 2
+
+class OpcoesMenuAtualizarEnum(IntEnum):
+    SAIR = 0
+    DESCRICAO = 1
+    DATA_ENTREGA = 2
+    PRIORIDADE = 3
+    STATUS_CONCLUSAO = 4

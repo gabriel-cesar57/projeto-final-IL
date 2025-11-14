@@ -1,4 +1,4 @@
-from auxiliares import enums
+from auxiliares.enums import OpcoesMenuVisualizarEnum
 import exception
 import operacoes.leitura_tarefas as op
 
@@ -8,7 +8,7 @@ def menu_visualizar() -> None:
             print('\n=== VISUALIZAR TAREFA ===')
             opcao_escolhida = int(input(pegar_opcoes_menu_visualizar()).strip())
 
-            opcao_formatada = enums.OpcoesMenuVisualizarEnum(opcao_escolhida)
+            opcao_formatada = OpcoesMenuVisualizarEnum(opcao_escolhida)
 
             processar_opcao_menu_visualizar(opcao_formatada)
         except ValueError:
@@ -33,15 +33,15 @@ def pegar_opcoes_menu_visualizar() -> str:
 
 def processar_opcao_menu_visualizar(opcao: int) -> None:
     match opcao:
-        case enums.OpcoesMenuVisualizarEnum.SAIR:
+        case OpcoesMenuVisualizarEnum.SAIR:
             raise exception.FecharMenuException('Usuário decidiu sair do menu de visualização de tarefas. Voltando...')
-        case enums.OpcoesMenuVisualizarEnum.VISUALIZAR_TODAS:
+        case OpcoesMenuVisualizarEnum.VISUALIZAR_TODAS:
             op.visualizar_todas_tarefas()
-        case enums.OpcoesMenuVisualizarEnum.VISUALIZAR_POR_ID:
+        case OpcoesMenuVisualizarEnum.VISUALIZAR_POR_ID:
             id = int(input('Digite o ID da tarefa que você deseja visualizar: ').strip())
             op.visualizar_tarefa_por_id(id)
-        case enums.OpcoesMenuVisualizarEnum.VISUALIZAR_VENCIDAS:
+        case OpcoesMenuVisualizarEnum.VISUALIZAR_VENCIDAS:
             op.visualizar_tarefas_vencidas()
-        case enums.OpcoesMenuVisualizarEnum.VISUALIZAR_PROXIMAS:
+        case OpcoesMenuVisualizarEnum.VISUALIZAR_PROXIMAS:
             op.visualizar_tarefas_proximas()
         
