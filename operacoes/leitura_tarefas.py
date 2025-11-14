@@ -1,15 +1,22 @@
 from datetime import datetime, timedelta
-from auxiliares import auxiliares
+from exception import ContinuarComMenuException
+from auxiliares import lista
+import auxiliares
 
-def visualizar_tarefa_por_id(lista_tarefas: list, id: int) -> None:
+_get_lista = lista.pegar_lista()
+
+def visualizar_tarefa_por_id(id: int) -> dict[str, any]:
+    lista_tarefas = _get_lista()
     tarefa = next((t for t in lista_tarefas if t['id'] == id), None)
 
     if tarefa:
         auxiliares.visualizar_unica_tarefa(tarefa)
+        return tarefa
     else:
-        print(f'Nenhuma tarefa com o ID {id} foi encontrada.')
+        raise ContinuarComMenuException(f'Nenhuma tarefa com o ID {id} foi encontrada.')
 
-def visualizar_tarefas_vencidas(lista_tarefas: list) -> None:
+def visualizar_tarefas_vencidas() -> list[dict[str, any]]:
+    lista_tarefas = _get_lista()
     hoje = datetime.now()
     tarefas_vencidas = []
 
@@ -20,19 +27,23 @@ def visualizar_tarefas_vencidas(lista_tarefas: list) -> None:
             tarefas_vencidas.append(tarefa)
 
     if(len(tarefas_vencidas) == 0):
-        print('Nenhuma tarefa vencida.')
+        raise ContinuarComMenuException('Nenhuma tarefa vencida.')
     else:
         auxiliares.visualizar_lista_tarefas(tarefas_vencidas)
+        return tarefas_vencidas
 
-def visualizar_tarefas_prioridade(lista_tarefas: list, prioridade: str) -> None:
+def visualizar_tarefas_prioridade(prioridade: str) -> list[dict[str, any]]:
+    lista_tarefas = _get_lista()
     tarefas_prioridade = [t for t in lista_tarefas if t["prioridade"].lower() == prioridade.lower()]
 
     if(len(tarefas_prioridade) == 0):
-        print('Nenhuma tarefa encontrada com a prioridade indicada.')
+        raise ContinuarComMenuException('Nenhuma tarefa encontrada com a prioridade indicada.')
     else:
         auxiliares.visualizar_lista_tarefas(tarefas_prioridade)
+        return tarefas_prioridade
 
-def visualizar_tarefas_proximas(lista_tarefas: list) -> None:
+def visualizar_tarefas_proximas() -> list[dict[str, any]]:
+    lista_tarefas = _get_lista()
     hoje = datetime.now()
     limite_superior = hoje + timedelta(days=3)
     tarefas_proximas = []
@@ -43,6 +54,7 @@ def visualizar_tarefas_proximas(lista_tarefas: list) -> None:
             tarefas_proximas.append(tarefa)
 
     if not tarefas_proximas:
-        print('Nenhuma tarefa encontrada para os próximos 3 dias.')
+        raise ContinuarComMenuException('Nenhuma tarefa encontrada para os próximos 3 dias.')
     else:
         auxiliares.visualizar_lista_tarefas(tarefas_proximas)
+        return tarefas_proximas

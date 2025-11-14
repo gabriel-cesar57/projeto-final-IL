@@ -20,3 +20,27 @@
 # JOÃO: Read e Delete
 # GABRIEL: Create e Refinamento
 # MURILO: Update e Integração com menus
+from auxiliares import enums
+import exception
+from menu import menu_principal
+
+def executar() -> None:
+    while True:
+        try:
+            print('\n=== SISTEMA DE GERENCIAMENTO DE TAREFAS ===\nSeja bem vindo. Como gostaria de prosseguir?')
+            opcao_escolhida = int(input(menu_principal.pegar_opcoes_menu_principal()).strip())
+
+            opcao_formatada = enums.OpcoesMenuEnum(opcao_escolhida)
+
+            menu_principal.processar_opcao_menu_principal(opcao_formatada)
+        except ValueError:
+            print('Opção escolhida é inválida. Tente novamente.')
+            continue
+        except exception.ContinuarComMenuException as continuar:
+            print(continuar)
+            continue
+        except exception.FecharMenuException as fechar:
+            print(fechar)
+            break
+
+executar()

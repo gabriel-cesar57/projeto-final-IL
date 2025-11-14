@@ -1,6 +1,6 @@
 from typing import List, Dict, Any, Union
-from datetime import datetime
 from auxiliares import formatar_data_datetime, visualizar_unica_tarefa
+from leitura_tarefas import visualizar_tarefa_por_id
 
 def atualizar_tarefa(lista_tarefas: List[Dict[str, Any]], id_tarefa: int) -> None:
     """
@@ -12,11 +12,7 @@ def atualizar_tarefa(lista_tarefas: List[Dict[str, Any]], id_tarefa: int) -> Non
     """
     
     # 1. Localizar a tarefa pelo ID
-    tarefa_para_atualizar = next((t for t in lista_tarefas if t['id'] == id_tarefa), None)
-
-    if not tarefa_para_atualizar:
-        print(f'\nERRO: Nenhuma tarefa com o ID {id_tarefa} foi encontrada para atualização.')
-        return
+    tarefa_para_atualizar = visualizar_tarefa_por_id(lista_tarefas, id_tarefa)
 
     print(f'\n--- TAREFA ATUAL (ID: {id_tarefa}) ---')
     visualizar_unica_tarefa(tarefa_para_atualizar)
@@ -86,20 +82,3 @@ def atualizar_tarefa(lista_tarefas: List[Dict[str, Any]], id_tarefa: int) -> Non
     print(f'\n--- TAREFA ATUALIZADA (ID: {id_tarefa}) ---')
     visualizar_unica_tarefa(tarefa_para_atualizar)
     print("Atualização concluída com sucesso.")
-
-if __name__ == '__main__':
-    # Exemplo de uso (Para testar esta função isoladamente)
-    
-    # Mock da lista de tarefas
-    lista_tarefas_exemplo = [
-        {'id': 1, 'descricao': 'Terminar o código de Create', 'data_entrega': '20/10/2024', 'prioridade': 'Alta', 'concluida': False},
-        {'id': 2, 'descricao': 'Revisar a documentação', 'data_entrega': '15/10/2024', 'prioridade': 'Média', 'concluida': False},
-    ]
-
-    # Tentativa de atualizar uma tarefa que existe
-    print("--- Teste 1: Atualizar Tarefa 1 ---")
-    atualizar_tarefa(lista_tarefas_exemplo, 1)
-
-    # Tentativa de atualizar uma tarefa que não existe
-    print("\n--- Teste 2: Atualizar Tarefa 99 ---")
-    atualizar_tarefa(lista_tarefas_exemplo, 99)
