@@ -1,7 +1,7 @@
 import datetime
 
 def formatar_data_datetime(data_nao_formatada: str)  -> datetime:
-    return datetime.strptime(data_nao_formatada, '%d/%m/%Y')
+    return datetime.datetime.strptime(data_nao_formatada, '%d/%m/%Y')
 
 # função para validar dados de entrada
 def validar_parametros(titulo: str, data_entrega, prioridade, id) -> None:

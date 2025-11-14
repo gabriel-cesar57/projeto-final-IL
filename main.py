@@ -42,5 +42,12 @@ def executar() -> None:
         except exception.FecharMenuException as fechar:
             print(fechar)
             break
+        except KeyboardInterrupt:
+            print('Interrompendo programa...')
+            break
+        except Exception as e:
+            print(e)
+            print('Um erro inesperado ocorreu. Tente novamente.')
+            continue
 
 executar()

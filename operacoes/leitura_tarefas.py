@@ -1,12 +1,18 @@
 from datetime import datetime, timedelta
 from exception import ContinuarComMenuException
-from auxiliares import lista
-import auxiliares
+from auxiliares import lista, auxiliares
 
-_get_lista = lista.pegar_lista()
+def visualizar_todas_tarefas() -> list[dict[str, any]]:
+    lista_tarefas = lista.pegar_lista()
+
+    if len(lista_tarefas) > 0:
+        auxiliares.visualizar_lista_tarefas(lista_tarefas)
+        return lista_tarefas
+    else:
+        raise ContinuarComMenuException('Nenhuma tarefa cadastrada.')
 
 def visualizar_tarefa_por_id(id: int) -> dict[str, any]:
-    lista_tarefas = _get_lista()
+    lista_tarefas = lista.pegar_lista()
     tarefa = next((t for t in lista_tarefas if t['id'] == id), None)
 
     if tarefa:
@@ -16,7 +22,7 @@ def visualizar_tarefa_por_id(id: int) -> dict[str, any]:
         raise ContinuarComMenuException(f'Nenhuma tarefa com o ID {id} foi encontrada.')
 
 def visualizar_tarefas_vencidas() -> list[dict[str, any]]:
-    lista_tarefas = _get_lista()
+    lista_tarefas = lista.pegar_lista()
     hoje = datetime.now()
     tarefas_vencidas = []
 
@@ -33,7 +39,7 @@ def visualizar_tarefas_vencidas() -> list[dict[str, any]]:
         return tarefas_vencidas
 
 def visualizar_tarefas_prioridade(prioridade: str) -> list[dict[str, any]]:
-    lista_tarefas = _get_lista()
+    lista_tarefas = lista.pegar_lista()
     tarefas_prioridade = [t for t in lista_tarefas if t["prioridade"].lower() == prioridade.lower()]
 
     if(len(tarefas_prioridade) == 0):
@@ -43,7 +49,7 @@ def visualizar_tarefas_prioridade(prioridade: str) -> list[dict[str, any]]:
         return tarefas_prioridade
 
 def visualizar_tarefas_proximas() -> list[dict[str, any]]:
-    lista_tarefas = _get_lista()
+    lista_tarefas = lista.pegar_lista()
     hoje = datetime.now()
     limite_superior = hoje + timedelta(days=3)
     tarefas_proximas = []

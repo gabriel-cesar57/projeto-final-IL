@@ -1,4 +1,5 @@
 from auxiliares import enums
+from operacoes import excluir_tarefas as op
 import exception
 
 def menu_excluir() -> None:
@@ -30,8 +31,11 @@ def pegar_opcoes_menu_excluir() -> str:
 
 def processar_opcao_menu_excluir(opcao: int) -> None:
     match opcao:
-        case 0:
+        case enums.OpcoesMenuExcluirEnum.SAIR:
             raise exception.FecharMenuException('Usuário decidiu sair do menu de exclusão de tarefas. Voltando...')
-        case 1:
-            print('oi')
+        case enums.OpcoesMenuExcluirEnum.EXCLUIR_TODAS:
+            op.excluir_todas_tarefas()
+        case enums.OpcoesMenuExcluirEnum.EXCLUIR_POR_ID:
+            id = int(input('Digite o ID da tarefa que você deseja excluir: ').strip())
+            op.excluir_tarefa_por_id(id)
         

@@ -18,3 +18,7 @@ class OpcoesMenuExcluirEnum(IntEnum):
     SAIR = 0
     EXCLUIR_TODAS = 1
     EXCLUIR_POR_ID = 2
+
+class OpcoesConfirmarExcluirEnum(IntEnum):
+    SIM = 1
+    NAO = 2
