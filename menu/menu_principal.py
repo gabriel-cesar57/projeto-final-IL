@@ -8,11 +8,11 @@ def menu_principal() -> None:
     while True:
         try:
             print('\n=== SISTEMA DE GERENCIAMENTO DE TAREFAS ===\nSeja bem vindo. Como gostaria de prosseguir?\n')
-            opcao_escolhida = int(input(menu_principal.pegar_opcoes_menu_principal()).strip())
+            opcao_escolhida = int(input(pegar_opcoes_menu_principal()).strip())
 
             opcao_formatada = OpcoesMenuEnum(opcao_escolhida)
 
-            menu_principal.processar_opcao_menu_principal(opcao_formatada)
+            processar_opcao_menu_principal(opcao_formatada)
         except ValueError:
             print('Opção escolhida é inválida. Tente novamente.')
             continue
