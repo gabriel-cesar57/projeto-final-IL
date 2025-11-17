@@ -8,34 +8,34 @@ A API é totalmente interna e voltada ao uso dentro do próprio sistema.
 
 # 1. Estrutura de Módulos
 # Estrutura do Projeto
-projeto-final-IL/
-│ main.py
-│ README.md
-│
-├─docs/
-| requisitos.md
-| arquitetura.md
-|
-├─ menu/
-│ menu_atualizar.py
-│ menu_cadastrar.py
-| menu_excluir.py
-| menu_principal.py
-| menu_vizualizar.py
-| 
-├─ operacoes/
-│ criacao_tarefas.py
-| atualizacao_tarefas.py
-| excluir_tarefas.py
-| leitura_tarefas.py
-│
-├─ auxiliares/
-│ auxiliares.py
-│ enums.py
-| lista.py
-│
-└─ exception/
-| exception.py
+projeto-final-IL/ <br>
+│ main.py <br>
+│ README.md <br>
+│ <br>
+├─docs/ <br>
+| requisitos.md <br>
+| arquitetura.md <br>
+| <br>
+├─ menu/ <br>
+│ menu_atualizar.py <br>
+│ menu_cadastrar.py <br>
+| menu_excluir.py <br>
+| menu_principal.py <br>
+| menu_vizualizar.py <br>
+|  <br>
+├─ operacoes/ <br>
+│ criacao_tarefas.py <br>
+| atualizacao_tarefas.py <br>
+| excluir_tarefas.py <br>
+| leitura_tarefas.py <br>
+│ <br>
+├─ auxiliares/ <br>
+│ auxiliares.py <br>
+│ enums.py <br>
+| lista.py <br>
+│ <br>
+└─ exception/ <br>
+| exception.py <br>
 
 # Módulo main.py
 
