@@ -4,6 +4,20 @@ Este projeto visa implementar um sistema simples e completo de gerenciamento de 
 
 Desenvolvido como projeto final da disciplina **IL — Lógica de Programação**.
 
+## Escopo
+
+Este sistema é uma aplicação CLI (linha de comando) destinada ao uso local por um único usuário por execução. Funciona inteiramente em memória durante a execução — não há persistência automática entre execuções (nenhum JSON/SQL é gravado por padrão). O escopo inclui:
+
+- Operações básicas de gerenciamento de tarefas: criar, listar, visualizar por ID, atualizar e excluir (individual ou todas).
+- Validação de entradas (datas, prioridades, campos obrigatórios).
+- Interface baseada em menus interativos numéricos.
+- Design educacional e simples, sem dependências externas; compatível com Python 3.10+.
+
+Este projeto NÃO cobre:
+- Persistência automática entre execuções (salvamento/carregamento automático de disco).
+- Multiusuário ou autenticação.
+- Interface gráfica.
+
 # Nomes:
 
 Gabriel Cesar Gomes Pereira - 1143218602 <br>
