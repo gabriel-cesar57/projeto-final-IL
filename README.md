@@ -4,11 +4,11 @@ Este projeto visa implementar um sistema simples e completo de gerenciamento de 
 
 Desenvolvido como projeto final da disciplina **IL — Lógica de Programação**.
 
-Nomes:
+# Nomes:
 
-Gabriel Cesar Gomes Pereira - 1143218602
-Jõao Paulo Cota Santana - 1143289139
-Murilo Ribeiro Santos - 1143339744
+Gabriel Cesar Gomes Pereira - 1143218602 <br>
+Jõao Paulo Cota Santana - 1143289139 <br>
+Murilo Ribeiro Santos - 1143339744 <br>
 
 # Funcionalidades
 
