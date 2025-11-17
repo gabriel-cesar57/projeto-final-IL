@@ -51,8 +51,9 @@ O usuário deve poder modificar qualquer atributo da tarefa:
 ---
 
 ### **RF04 — Excluir tarefa**
-O sistema deve permitir remover uma tarefa pelo ID.
-Ou remover todas as tarefas.
+O sistema deve permitir:
+- remover uma tarefa pelo ID.
+- remover todas as tarefas.
 ---
 
 ### **RF05 — Validar entradas**
