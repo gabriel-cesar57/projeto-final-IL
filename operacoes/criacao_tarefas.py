@@ -6,7 +6,7 @@ def criar_tarefa(titulo: str, data_entrega: datetime, prioridade: str) -> None:
     lista_tarefas = lista.pegar_lista()
     
     if prioridade is None:
-        prioridade = 'media'  # Prioridade padrão é Média
+        prioridade = 'Media'  # Prioridade padrão é Média
     try:
         validar_parametros(titulo, data_entrega, prioridade, None)
     except Exception as e:
