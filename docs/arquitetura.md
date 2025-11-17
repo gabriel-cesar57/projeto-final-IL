@@ -117,7 +117,7 @@ lista_tarefas contendo dicionários de tarefas.
 
 **auxiliares.py**
 
-# função limpar_console()
+<h3> função limpar_console() </h3>
 Descrição:
 Limpa o terminal do sistema operacional.
 
@@ -125,7 +125,7 @@ Windows → cls
 
 Linux/Mac → clear
 
-# função formatar_data_datetime(data_nao_formatada)
+<h3> função formatar_data_datetime(data_nao_formatada) </h3>
 Descrição:
 Converte uma data no formato DD/MM/AAAA para um objeto datetime.
 
@@ -141,7 +141,7 @@ Erros possíveis:
 
 ValueError se o formato for inválido.
 
-# função validar_parametros(titulo, data_entrega, prioridade, id)
+<h3> função validar_parametros(titulo, data_entrega, prioridade, id) </h3>
 
 Descrição:
 Valida os dados de entrada antes de criar ou editar uma tarefa.
@@ -156,7 +156,7 @@ id (int): deve ser inteiro positivo, se informado
 Erros possíveis:
 ValueError se qualquer validação falhar.
 
-# função visualizar_lista_tarefas(lista_tarefas)
+<h3> função visualizar_lista_tarefas(lista_tarefas) </h3>
 
 Descrição:
 Exibe no terminal todas as tarefas contidas na lista recebida.
@@ -172,7 +172,7 @@ data de entrega
 prioridade
 concluída (Sim/Não)
 
-# função visualizar_unica_tarefa(tarefa)
+<h3> função visualizar_unica_tarefa(tarefa)</h3>
 Descrição:
 Exibe no terminal os detalhes de apenas uma tarefa.
 
@@ -196,8 +196,8 @@ Cada tarefa deve ser um dicionário contendo campos como:
     "id": int,
     "descricao": str,
     "data_entrega": datetime | str,
-    "prioridade": str | int,
-    "status_conclusao": bool
+    "prioridade": str, #Baixa, Media ou Alta
+    "concluida": bool
 }
 ```
 
