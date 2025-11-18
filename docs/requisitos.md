@@ -14,65 +14,52 @@ As operações incluem criar, visualizar, editar e excluir tarefas, além de reg
 
 ## 2. Escopo
 
-O sistema opera em ambiente local, utilizando armazenamento em arquivo texto ou JSON.  
+O sistema opera em ambiente local, em memória durante a execução (sem persistência automática entre execuções).  
 Não exige instalação de bibliotecas externas e funciona via terminal.
 
 ---
 
 ## 3. Requisitos Funcionais (RF)
 
-### **RF01 — Criar tarefas**
+### **RF01 — Criar tarefas**  
 O sistema deve permitir cadastrar uma nova tarefa contendo:
 - título    
 - prioridade  
-- prazo
+- prazo (data)  
 - progresso (concluído/pendente)
 
----
-
-### **RF02 — Listar tarefas**
+### **RF02 — Listar tarefas**  
 O sistema deve exibir todas as tarefas existentes com:
 - ID  
-- título  
+- título / descrição  
 - prioridade  
-- progresso
+- progresso  
 - prazo
 
----
-
-### **RF03 — Editar tarefa**
+### **RF03 — Editar tarefa**  
 O usuário deve poder modificar qualquer atributo da tarefa:
-- título  
-- descrição  
+- título / descrição  
 - prioridade  
 - prazo  
 - progresso
 
----
-
-### **RF04 — Excluir tarefa**
+### **RF04 — Excluir tarefa**  
 O sistema deve permitir:
-- remover uma tarefa pelo ID.
-- remover todas as tarefas.
----
+- remover uma tarefa pelo ID.  
+- remover todas as tarefas (com confirmação).
 
-### **RF05 — Validar entradas**
+### **RF05 — Validar entradas**  
 O sistema deve validar:
 - prioridade (Baixa / Media / Alta)  
 - progresso : concluido (sim) / pendente (não)  
 - campos obrigatórios não vazios  
-- formatos de data suportados  
+- formatos de data suportados (dd/mm/aaaa ou dd-mm-aaaa)
 
----
+### **RF06 — Persistência**  
+O sistema NÃO realiza persistência automática entre execuções — todos os dados existem somente em memória durante a execução.  
+Exportação/importação manual pode ser adicionada futuramente, mas não faz parte do escopo atual.
 
-### **RF06 — Salvar e carregar dados automaticamente**
-O sistema deve:
-- salvar as alterações  
-- carregar as tarefas ao executar o comando adequado.  
-
----
-
-### **RF07 — Exibir menu interativo**
+### **RF07 — Exibir menu interativo**  
 O sistema deve apresentar um menu ao usuário com opções numéricas claras.
 
 ---
@@ -83,60 +70,44 @@ O sistema deve apresentar um menu ao usuário com opções numéricas claras.
 - Interface baseada em texto, simples e intuitiva.  
 - Todas as mensagens devem ser claras e objetivas.
 
----
-
 ### **RNF02 — Portabilidade**
 - Deve funcionar em qualquer sistema com Python 3.10+.
 
----
-
 ### **RNF03 — Confiabilidade**
-- Em caso de erro no arquivo, o programa deve exibir mensagem adequada.  
-- Não deve corromper dados existentes.
-
----
+- Em caso de erro, o programa deve exibir mensagem adequada sem corromper estado em memória.
 
 ### **RNF04 — Manutenibilidade**
 - Código dividido em módulos (menu, operações, auxiliares, exceptions).  
 - Estrutura clara para facilitar modificações futuras.
 
----
-
 ### **RNF05 — Desempenho**
-- O sistema deve executar todas as operações rapidamente, sem atrasos perceptíveis.  
-- Operações limitadas ao uso em arquivos locais, sem processamento pesado.
-
----
+- Operações rápidas, adequadas para uso local e volume pequeno de tarefas.
 
 ### **RNF06 — Segurança**
 - Não requer autenticação.  
 - Deve evitar quebra do programa por entradas inválidas.  
-- Exceções personalizadas devem ser usadas para garantir integridade.
+- Exceções personalizadas devem ser usadas para controle de fluxo do menu.
 
 ---
 
 ## 5. Regras de Negócio (RN)
 
-### **RN01 — IDs devem ser únicos**
-Cada tarefa deve possuir um identificador numérico único.
-
----
+### **RN01 — IDs únicos**
+Cada tarefa deve possuir um identificador numérico único, atribuído automaticamente ao criar.
 
 ### **RN02 — Progresso**
-O progresso deve ser um valor entre **concluida e pendente**, representando o status atual.
-
----
+O progresso é booleano/conclusão: `concluida = True` (concluída) ou `False` (pendente).  
+Não é permitido criar uma tarefa já marcada como concluída; novas tarefas iniciam com `concluida = False`.
 
 ### **RN03 — Prioridade**
-A prioridade é formatada automaticamente, indo de **Baixa, Media, Alta**, onde:
-- Baixa = baixa prioridade  
-- Media = média prioridade **(padrão caso nulo)** 
-- Alta = alta prioridade  
-
----
+Prioridade aceita: **Baixa**, **Media**, **Alta**.  
+Valores são normalizados pelo sistema (capitalização) e `Media` é padrão quando não informado.
 
 ### **RN04 — Prazo**
-O prazo deve ser informado em formato de data definido no sistema (ex: `DD/MM/AAAA`).
+Prazo deve ser informado no formato `DD/MM/AAAA` e ser posterior à data atual — tanto na criação quanto na atualização.
+
+### **RN05 — Exclusões**
+Exclusão de todas as tarefas exige confirmação explícita do usuário.
 
 ---
 
@@ -151,6 +122,6 @@ O projeto utiliza apenas módulos padrões do Python.
 
 - O sistema não possui interface gráfica.  
 - Não possui múltiplos usuários ou autenticação.  
-- Armazenamento limitado ao arquivo local.
+- Armazenamento é limitado à memória durante a execução (sem salvamento automático).
 
 ---
