@@ -23,11 +23,11 @@ def visualizar_tarefa_por_id(id: int) -> dict[str, any]:
 
 def visualizar_tarefas_vencidas() -> list[dict[str, any]]:
     lista_tarefas = lista.pegar_lista()
-    hoje = datetime.now()
+    hoje = datetime.now().date()
     tarefas_vencidas = []
 
     for tarefa in lista_tarefas:
-        data_entrega = auxiliares.formatar_data_datetime(tarefa['data_entrega'])
+        data_entrega = auxiliares.formatar_data_para_datetime_date(tarefa['data_entrega'])
 
         if(not tarefa['concluida'] and data_entrega < hoje):
             tarefas_vencidas.append(tarefa)
@@ -50,12 +50,12 @@ def visualizar_tarefas_prioridade(prioridade: str) -> list[dict[str, any]]:
 
 def visualizar_tarefas_proximas() -> list[dict[str, any]]:
     lista_tarefas = lista.pegar_lista()
-    hoje = datetime.now()
+    hoje = datetime.now().date()
     limite_superior = hoje + timedelta(days=3)
     tarefas_proximas = []
 
     for tarefa in lista_tarefas:
-        data_entrega = auxiliares.formatar_data_datetime(tarefa['data_entrega'])
+        data_entrega = auxiliares.formatar_data_para_datetime_date(tarefa['data_entrega'])
         if not tarefa['concluida'] and hoje <= data_entrega <= limite_superior:
             tarefas_proximas.append(tarefa)
 

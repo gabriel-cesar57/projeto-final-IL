@@ -1,3 +1,4 @@
+from exception import ContinuarComMenuException
 import datetime
 import os
 
@@ -5,26 +6,29 @@ def limpar_console() -> None:
     """Limpa o terminal (Windows: cls, outros: clear)."""
     os.system('cls' if os.name == 'nt' else 'clear')
 
-def formatar_data_datetime(data_nao_formatada: str)  -> datetime:
-    return datetime.datetime.strptime(data_nao_formatada, '%d/%m/%Y')
+def formatar_data_para_datetime_date(data_nao_formatada: str)  -> datetime.date:
+    return datetime.datetime.strptime(data_nao_formatada, '%d/%m/%Y').date()
+
+def formatar_data_para_string(data_em_datetime_date: datetime.date) -> str:
+    return data_em_datetime_date.strftime('%d/%m/%Y')
 
 # função para validar dados de entrada
 def validar_parametros(titulo: str, data_entrega: datetime, prioridade: str, id: int) -> None:
-    #Valida as variaveis e lança ValueError se forem inválidos.
+    #Valida as variaveis e lança ContinuarComMenuException se forem inválidos.
     
     if titulo is None or not isinstance(titulo, str) or titulo.strip() == "":
-        raise ValueError("ERRO: Título não pode ser nulo ou vazio.")
+        raise ContinuarComMenuException("ERRO: Título não pode ser nulo ou vazio.")
     if data_entrega is None:
-        raise ValueError("ERRO: Data de entrega não pode ser nula.")
+        raise ContinuarComMenuException("ERRO: Data de entrega não pode ser nula.")
     if not isinstance(data_entrega, datetime.date):
-        raise ValueError("Data de entrega deve ser no formato ANO/MES/DIA.")
+        raise ContinuarComMenuException("ERRO: Data de entrega deve ser no formato dd/mm/aaaa.")
     hoje = datetime.date.today()
     if data_entrega <= hoje:
-        raise ValueError("ERRO: Data de entrega deve ser posterior à data de hoje.")
-    if prioridade.capitalize() not in ['Baixa', 'Media', 'Alta']:
-        raise ValueError("ERRO: Prioridade deve ser Baixa, Media ou Alta.")
+        raise ContinuarComMenuException("ERRO: Data de entrega deve ser posterior à data de hoje.")
+    if prioridade.lower().strip() not in ['baixa', 'media', 'média', 'alta']:
+        raise ContinuarComMenuException("ERRO: Prioridade deve ser Baixa, Media ou Alta.")
     if id is not None and (not isinstance(id, int) or id <= 0):
-        raise ValueError("ERRO: ID deve ser um inteiro positivo.")
+        raise ContinuarComMenuException("ERRO: ID deve ser um inteiro positivo.")
 
 def visualizar_lista_tarefas(lista_tarefas: list) -> None:
     for tarefa in lista_tarefas:

@@ -125,7 +125,7 @@ Windows → cls
 
 Linux/Mac → clear
 
-<h3> função formatar_data_datetime(data_nao_formatada) </h3>
+<h3> função formatar_data_para_datetime_date(data_nao_formatada) </h3>
 Descrição:
 Converte uma data no formato DD/MM/AAAA para um objeto datetime.
 

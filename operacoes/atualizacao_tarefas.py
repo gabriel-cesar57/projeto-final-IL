@@ -1,5 +1,5 @@
 from datetime import datetime
-from auxiliares.auxiliares import formatar_data_datetime, visualizar_unica_tarefa
+from auxiliares.auxiliares import formatar_data_para_datetime_date, formatar_data_para_string, visualizar_unica_tarefa
 from auxiliares.enums import OpcoesMenuAtualizarEnum
 from exception import FecharMenuException, ContinuarComMenuException
 
@@ -13,15 +13,15 @@ def atualizar_descricao(tarefa: dict[str, any]) -> None:
         raise ContinuarComMenuException("ERRO: Descrição não pode ser vazia. Nenhuma alteração feita.")
 
 def atualizar_data_entrega(tarefa: dict[str, any]) -> None:
-    """Solicita e atualiza a data de entrega (valida com formatar_data_datetime)."""
+    """Solicita e atualiza a data de entrega (valida com formatar_data_para_datetime_date)."""
     nova_data_str = input("Nova data de entrega (dd/mm/aaaa): ").strip()
     if nova_data_str:
         try:
             # valida a data; se válido, guarda como string no mesmo formato
-            data_formatada = formatar_data_datetime(nova_data_str)
-            if data_formatada < datetime.now():
+            data_formatada = formatar_data_para_datetime_date(nova_data_str)
+            if data_formatada < datetime.now().date():
                 raise ContinuarComMenuException('ERRO: A data de entrega deve ser posterior à atual.')
-            tarefa['data_entrega'] = data_formatada.date().strftime('%d/%m/%Y')
+            tarefa['data_entrega'] = formatar_data_para_string(data_formatada)
             print("Data de entrega atualizada.")
         except ValueError:
             raise ContinuarComMenuException("ERRO: Formato de data inválido. Use dd/mm/aaaa.")
